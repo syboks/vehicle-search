@@ -24,7 +24,10 @@ public class ManufacturerController {
 
     @GetMapping
     public ResponseEntity<List<Manufacturer>> getAllManufacturers(){
-        //List<Manufacturer> savedmanufacturers=manufacturerService.
-        return null;
+        List<Manufacturer> savedmanufacturers=manufacturerService.fetchAllManufacturers();
+        return ResponseEntity.status(HttpStatus.OK).body(savedmanufacturers);
+
     }
+
+
 }
