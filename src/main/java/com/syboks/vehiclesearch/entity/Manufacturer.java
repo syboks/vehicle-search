@@ -1,7 +1,6 @@
 package com.syboks.vehiclesearch.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
