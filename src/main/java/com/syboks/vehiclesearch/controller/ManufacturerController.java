@@ -1,6 +1,7 @@
 package com.syboks.vehiclesearch.controller;
 
 import com.syboks.vehiclesearch.entity.Manufacturer;
+import com.syboks.vehiclesearch.exception.ManufactureNotFoundException;
 import com.syboks.vehiclesearch.service.ManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,11 @@ public class ManufacturerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Manufacturer> getManufacturerById(@PathVariable int id){
+    public ResponseEntity<Manufacturer> getManufacturerById(@PathVariable int id) throws ManufactureNotFoundException {
         Manufacturer dbManufacturer=manufacturerService.getManufacturerForId(id);
+        if(dbManufacturer==null){
+            throw new ManufactureNotFoundException("No manufacturer found for ID-"+id);
+        }
         return ResponseEntity.ok(dbManufacturer);
     }
 
